@@ -17,12 +17,11 @@ const shoppingListEl = document.getElementById("shopping-list");
 const btnDeleteDone = document.getElementById("btnDelDone");
 const btnDeleteAll = document.getElementById("btnDelAll");
 
-/ Event listener for pressing button
 addButtonEl.addEventListener("click", function() {
     addItem();
 });
 
-/ Event listener for pressing Enter key in input field
+// Event listener for pressing Enter key in input field
 inputFieldEl.addEventListener("keypress", function(event) {
     if (event.key === "Enter") {
         addItem(); // Call the addItem function directly
@@ -41,6 +40,10 @@ function addItem() {
         clearInputFieldEl();
     }
 }
+
+// Update the add button event listener to use the addItem function
+addButtonEl.addEventListener("click", addItem);
+
 
 onValue(shoppingListinDB, function(snapshot) {
     if (snapshot.exists()) { // to check if there is a snapshot record in firebase db
@@ -97,6 +100,7 @@ btnDeleteAll.addEventListener("click", function() {
     if (confirmDelete) {
         remove(shoppingListinDB);
     }
+    
 });
 
 btnDeleteDone.addEventListener("click", function() {
@@ -104,18 +108,28 @@ btnDeleteDone.addEventListener("click", function() {
     let confirmDelete = confirm("Are you sure you want to delete all done items?");
     if (confirmDelete) {
         let itemsToDelete = false;
+        
         onValue(shoppingListinDB, function(snapshot) {
             if (snapshot.exists()) {
                 let itemsArray = Object.entries(snapshot.val());
                 
-                itemsArray.forEach(([itemID, itemData]) => {
-                    if (itemData.status === 1) {
+                for (let i = 0; i < itemsArray.length; i++) {
+                    let itemID = itemsArray[i][0];
+                    let itemData = itemsArray[i][1];
+                    let currentItemStatus = itemData.status;
+                    if (currentItemStatus === 1) {
                         itemsToDelete = true;
-                        let itemRef = ref(database, `shoppingList/${itemID}`);
-                        remove(itemRef);
+                        let shoppinglistDB = ref(database, `shoppingList/${itemID}`);
+                        remove(shoppinglistDB);
                     }
-                });
-            }   
-        });
+                }
+
+                if (!itemsToDelete) {
+                    alert("No items with status 1 found.");
+                }
+            }
+        }, { onlyOnce: true }); // Ensure the onValue listener is only called once
     }
+   
 });
+
