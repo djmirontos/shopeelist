@@ -18,13 +18,13 @@ const shoppingListEl = document.getElementById("shopping-list");
 
 addButtonEl.addEventListener("click", function() {
     let inputValue = inputFieldEl.value;
-    
+    if (inputValue !== ""){
     push(shoppingListinDB, inputValue); // SAVING THE DATA TO DATABASE
 
     clearInputFieldEl();
 
    // appendItemToShoppingListEl(inputValue) ;
-    
+    }
 })
 
 onValue(shoppingListinDB, function(snapshot) {
