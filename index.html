@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>ShoppeList</title>
+        <title>Shopeelist</title>
         <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png">
         <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16x16.png">
@@ -15,15 +15,26 @@
     </head>
     <body>
         <div class="container">
-            <img src="./assets/cat.png">
-            <p>©DJM -2024</p>
-            <input type="text" id="input-field" placeholder="Add item here">
-            <button id="add-button">Add to cart</button>
+            <div class="dropdown">
+                <img id="img-menu" class="menuBar" src="./assets/menu.png" alt="Menu bar">
+                <!-- <a href="#" class="link">Pricing</a> -->
+                <div id="down-menu" class="dropdown-menu">
+                    <button id="btnDelDone" class="btnDropDown">Delete Done</button>
+                    <hr class="dropdown-separator">
+                    <button id="btnDelAll"  class="btnDropDown">Delete All</button>
+                </div>
+            </div>
+            <img class="appLogo" src="./assets/cat.png">
+            
+            <input type="text" id="input-field" placeholder="Bread">
+            <button class="btnAddItem" id="add-button">Add to cart</button>
             <ul id="shopping-list">
                 
             </ul>
+            <p>©2024 - DJM</p>
         </div>
         <script src="index.js" type="module"></script>
+        <script src="dropdown.js"></script>
     </body>
 </html>
 
