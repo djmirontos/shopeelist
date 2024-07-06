@@ -14,13 +14,90 @@ html, body {
 }
 
 p {
-
+    margin-left: 130px;
     font-size: x-small;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-img {
-    width: 150px;
+.appLogo {
+    width: 140px;
     margin: 0 auto;
+}
+
+.menuBar {
+    width: 25px;
+}
+
+.menuBar:hover {
+    cursor: pointer;
+}
+
+.link {
+    background-color: none;
+    border: none;
+    text-decoration: none;
+    color: #777;
+    font-family: inherit;
+    font-size: inherit;
+    cursor: pointer;
+    padding: 0;
+}
+
+.dropdown > .link:focus,
+.link:hover {
+    color: black;
+}
+
+.dropdown {
+    position: relative;
+    
+   
+}
+
+.dropdown-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    position: absolute;
+    left: 0;
+    top: calc(100% + .25rem);
+    background-color: white;
+    padding: 0.75rem;
+    border-radius: .25rem;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .1);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-10px);
+    transition: opacity 150ms ease-in-out, transform 150ms ease-in;
+}
+
+.dropdown-menu.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.btnDropDown {
+    padding: 5px;
+    border: none;
+    background-color: transparent;
+    text-align: left;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   
+}
+
+.btnDropDown:hover {
+    cursor: pointer;
+    background-color: #a36e77;
+    color: white;
+}
+
+/* Style the horizontal line */
+.dropdown-separator {
+    border: 0;
+    border-top: 1px solid #ddd;
+    margin: 0 auto; /* Center the separator */
+    width: 100%; /* Adjust width as needed */
 }
 
 input {
@@ -38,7 +115,7 @@ input {
 }
 
 
-button {
+.btnAddItem {
     color: #FDFDFD;
     background-color: #AC485A;
     border: 0;
@@ -50,7 +127,7 @@ button {
     box-shadow: 0px 4px 6px 0px rgba(50,50,93,0.11) , 0px 1px 3px 0px rgba(0,0,0,0.08);
 }
 
-button:hover {
+.btnAddItem:hover {
     cursor: pointer;
     background-color: #a36e77;
 }
@@ -75,4 +152,14 @@ ul li {
 ul li:hover {
     background-color: #f2f3ff;
     cursor: pointer;
+}
+
+.strikeThroughText {
+    /* text-decoration: line-through;
+    background-color:#dee1e2 ;
+    color: rgba(0, 0, 0, 0.5); */
+    text-decoration: line-through;
+    color: rgba(0, 0, 0, 0.5);
+    opacity: 0.6;
+    background-color:#dee1e2 ;
 }
