@@ -17,17 +17,30 @@ const shoppingListEl = document.getElementById("shopping-list");
 const btnDeleteDone = document.getElementById("btnDelDone");
 const btnDeleteAll = document.getElementById("btnDelAll");
 
+/ Event listener for pressing button
 addButtonEl.addEventListener("click", function() {
+    addItem();
+});
+
+/ Event listener for pressing Enter key in input field
+inputFieldEl.addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+        addItem(); // Call the addItem function directly
+    }
+});
+
+// Define the addItem function
+function addItem() {
     let inputValue = inputFieldEl.value;
     if (inputValue !== "") {
         let item = {
             value: inputValue,
             status: 0
         };
-        push(shoppingListinDB, item); // SAVING THE DATA TO DATABASE
+        push(shoppingListinDB, item); // Saving the data to the database
         clearInputFieldEl();
     }
-});
+}
 
 onValue(shoppingListinDB, function(snapshot) {
     if (snapshot.exists()) { // to check if there is a snapshot record in firebase db
